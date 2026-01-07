@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+
+import platosImage from "@assets/imgs/home/platos.jpg";
+---
+
+<section class="bg-secondary-1">
+  <div class="relative">
+    <div class="hidden md:block md:absolute md:inset-y-0 md:left-0 md:w-[50vw]">
+      <Image
+        src={platosImage}
+        alt="Platillos tailandeses en Thai Town"
+        class="h-full w-full object-cover"
+      />
+    </div>
+    <div class="container mx-auto px-4 py-12 md:py-16">
+      <div class="grid gap-8 md:grid-cols-2 md:items-center">
+        <div class="md:hidden">
+          <Image
+            src={platosImage}
+            alt="Platillos tailandeses en Thai Town"
+            class="h-full w-full object-cover"
+          />
+        </div>
+        <div class="space-y-4 text-center md:text-left md:col-start-2">
+          <h2 class="text-4xl font-semibold text-primary-2 md:text-5xl">
+            Más que un menú, un homenaje al sabor tailandés
+          </h2>
+          <p class="text-base text-primary-3">
+            Desde los clásicos edamames, hasta nuestros curries y Pad Thai, cada
+            receta tiene ingredientes que garantizan frescura, textura y un
+            sabor inolvidable para tu paladar.
+          </p>
+          <a
+            href="/menu"
+            class="inline-flex items-center justify-center rounded-full bg-primary-2 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-primary-1 hover:text-white"
+          >
+            Conoce el menú
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+---
+import HomeCarousel from "@components/HomeCarousel";
+---
+
+<section class="container mx-auto px-4 pt-12 pb-16 lg:pt-20">
+  <div class="grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-center">
+    <div class="space-y-6 text-center lg:text-left">
+      <h1 class="text-4xl font-semibold text-primary-2 md:text-5xl">
+        El mejor Pad Thai en México
+      </h1>
+      <p class="text-base text-primary-3 md:text-lg">
+        Thai Town es un pedacito de la cultura tailandesa en México. A través de
+        nuestros platillos podrás tener un viaje gastronómico al sudeste
+        asiático y ser atendido con la calidez mexicana.
+      </p>
+    </div>
+    <div class="flex justify-center">
+      <HomeCarousel client:load />
+    </div>
+  </div>
+</section>

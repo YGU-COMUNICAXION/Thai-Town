@@ -37,12 +37,12 @@ export default function HomeCarousel() {
   };
 
   return (
-    <div className="flex items-center justify-center gap-4 lg:gap-6">
+    <div className="flex items-center justify-center gap-4 lg:gap-8">
       <button
         type="button"
         onClick={handlePrev}
         aria-label="Platillo anterior"
-        className="hidden sm:flex size-10 items-center justify-center rounded-full border border-primary-3 text-primary-3 transition hover:bg-primary-3 hover:text-white"
+        className="hidden sm:flex items-center justify-center text-3xl text-primary-3 transition hover:text-primary-1"
       >
         <span className="text-2xl">‹</span>
       </button>
@@ -51,21 +51,21 @@ export default function HomeCarousel() {
         <img
           src={activeSlide.image.src}
           alt={activeSlide.title}
-          className="size-72 md:size-80 lg:size-[22rem] rounded-full object-cover shadow-xl"
+          className="size-80 md:size-[24rem] lg:size-[28rem] rounded-full object-cover shadow-xl"
         />
         <svg
-          className="absolute -bottom-8 -right-4 w-44 h-44 rotate-[20deg]"
-          viewBox="0 0 200 200"
+          className="absolute inset-0 h-full w-full rotate-[20deg]"
+          viewBox="0 0 400 400"
           aria-hidden="true"
         >
           <defs>
             <path
               id={circleId}
-              d="M100,100 m-70,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"
+              d="M200,200 m-155,0 a155,155 0 1,1 310,0 a155,155 0 1,1 -310,0"
             />
           </defs>
-          <text className="fill-primary-2 text-[18px] font-semibold tracking-[0.35em] uppercase">
-            <textPath href={`#${circleId}`} startOffset="72%">
+          <text className="fill-primary-2 text-[22px] font-semibold tracking-[0.32em] uppercase">
+            <textPath href={`#${circleId}`} startOffset="66%">
               {activeSlide.title}
             </textPath>
           </text>
@@ -76,7 +76,7 @@ export default function HomeCarousel() {
         type="button"
         onClick={handleNext}
         aria-label="Siguiente platillo"
-        className="hidden sm:flex size-10 items-center justify-center rounded-full border border-primary-3 text-primary-3 transition hover:bg-primary-3 hover:text-white"
+        className="hidden sm:flex items-center justify-center text-3xl text-primary-3 transition hover:text-primary-1"
       >
         <span className="text-2xl">›</span>
       </button>
