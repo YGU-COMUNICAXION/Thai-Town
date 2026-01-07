@@ -1,9 +1,94 @@
 ---
+import { Image } from "astro:assets";
+
+import HomeCarousel from "@components/HomeCarousel";
 import Layout from "src/layout/Layout.astro";
+
+import platosImage from "@assets/imgs/home/platos.jpg";
+import nuestraCasaImage from "@assets/imgs/home/nuestracasa.png";
 ---
 
 <Layout title="Thai Town - Inicio" description="Bienvenido a Thai Town">
-  <section class="container mx-auto px-4 py-8 text-center bg-red-900">
-    <h1 class="">Thai Town</h1>
+  <section class="container mx-auto px-4 pt-12 pb-16 lg:pt-20">
+    <div class="grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-center">
+      <div class="space-y-6 text-center lg:text-left">
+        <h1 class="text-4xl font-semibold text-primary-2 md:text-5xl">
+          El mejor Pad Thai en México
+        </h1>
+        <p class="text-base text-primary-3 md:text-lg">
+          Thai Town es un pedacito de la cultura tailandesa en México. A través
+          de nuestros platillos podrás tener un viaje gastronómico al sudeste
+          asiático y ser atendido con la calidez mexicana.
+        </p>
+      </div>
+      <div class="flex justify-center">
+        <HomeCarousel client:load />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-secondary-1">
+    <div class="container mx-auto grid gap-8 px-4 py-12 md:grid-cols-2 md:items-center lg:py-16">
+      <div>
+        <Image
+          src={platosImage}
+          alt="Platillos tailandeses en Thai Town"
+          class="h-full w-full rounded-2xl object-cover shadow-lg"
+        />
+      </div>
+      <div class="space-y-4 text-center md:text-left">
+        <h2 class="text-3xl font-semibold text-primary-2">
+          Más que un menú, un homenaje al sabor tailandés
+        </h2>
+        <p class="text-base text-primary-3">
+          Desde los clásicos edamames, hasta nuestros curries y Pad Thai, cada
+          receta tiene ingredientes que garantizan frescura, textura y un sabor
+          inolvidable para tu paladar.
+        </p>
+        <a
+          href="/menu"
+          class="inline-flex items-center justify-center rounded-full bg-primary-2 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-primary-1"
+        >
+          Conoce el menú
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container mx-auto px-4 py-16">
+    <div class="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-center">
+      <div class="space-y-4 text-center lg:text-left">
+        <h2 class="text-3xl font-semibold text-primary-2">
+          Nuestra casa, tu casa
+        </h2>
+        <p class="text-base text-primary-3">
+          Nuestro restaurante es un acogedor lugar en el que te hemos servido
+          por los últimos 2 años, aunque en el pasado también estuvimos en el
+          mercado Mesa Nápoles por 5 años.
+        </p>
+        <p class="text-base text-primary-3">
+          Nos encantaría que nos visites en esta nueva ubicación.
+        </p>
+        <p class="text-sm font-semibold text-primary-2">
+          C. Pensilvania 80, Nápoles, Benito Juárez, 03810 Ciudad de México,
+          CDMX
+        </p>
+      </div>
+      <div class="flex justify-center lg:justify-end">
+        <Image
+          src={nuestraCasaImage}
+          alt="Fachada del restaurante Thai Town"
+          class="w-full max-w-xl rounded-2xl object-cover shadow-lg"
+        />
+      </div>
+    </div>
+    <div class="mt-10 flex justify-center">
+      <a
+        href="/menu"
+        class="text-sm font-semibold uppercase tracking-[0.2em] text-primary-2 underline decoration-primary-2 underline-offset-8"
+      >
+        Visita nuestro menú
+      </a>
+    </div>
   </section>
 </Layout>
