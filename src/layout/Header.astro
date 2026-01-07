@@ -1,0 +1,141 @@
+---
+import { Image } from "astro:assets";
+
+import imgLogo from "@assets/logo.svg";
+---
+
+<header
+  id="header"
+  data-scrolled="false"
+  class:list={[
+    "group/header flex items-center justify-center",
+    "z-20 fixed w-full left-0 right-0 transition-colors duration-300",
+    "bg-black/50",
+  ]}
+>
+  <div
+    class="container relative flex items-center justify-between gap-4 px-4 md:py-0 lg:p-0 md:px-0"
+  >
+    <div class="lg:hidden absolute">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class={`size-8 lg:hidden transition-colors duration-300`}
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+      </svg>
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class={`hidden size-8 lg:hidden transition-colors duration-300`}
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18 18 6M6 6l12 12"></path>
+      </svg>
+    </div>
+
+    <div
+      class="w-full lg:w-auto flex items-center justify-center lg:justify-start"
+    >
+      <a
+        href={"/"}
+        data-i18n-path="/"
+        data-header-brand
+        class={`flex items-center transition-colors duration-300`}
+      >
+        <Image class="h-16 lg:h-24 w-auto" src={imgLogo} alt={"logo"} />
+      </a>
+    </div>
+
+    <nav
+      id="navigator-menu"
+      class:list={[
+        "bg-white fixed -top-full left-0 right-0 lg:top-0 lg:left-auto lg:right-auto",
+        "flex flex-col items-center justify-center shadow lg:shadow-none p-6 py-8 lg:p-0 lg:py-0",
+        "transition-[top] duration-300 ease-in-out lg:transition-none",
+        "lg:static lg:flex-1 lg:flex lg:items-center lg:gap-4 lg:pt-1 lg:bg-transparent",
+      ]}
+    >
+      <ul
+        data-header-nav
+        class={`h-full container
+        flex flex-col lg:flex-row items-center justify-end gap-8 lg:gap-14
+        lg:[&>li]:text-center
+        [&>li>a]:relative [&>li>a]:uppercase [&>li]:inline-block
+        [&>li>a]:hover:underline [&>li>a]:transition-colors [&>li>a]:duration-300
+        [&>li>a]:ease-in-out
+        font-normal text-base lg:text-lg xl:text-xl transition-colors duration-300
+      `}
+      >
+        <li>
+          <a href={"/"}> Inicio </a>
+        </li>
+        <li>
+          <a href={"/quienes-somos"}> Quienes somos </a>
+        </li>
+        <li>
+          <a href={"/proyectos"}> Proyectos </a>
+        </li>
+        <li>
+          <a href={"/inversionistas"}> Inversionistas </a>
+        </li>
+        <li>
+          <a href={"/contacto"}> Contacto </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  @reference "../styles/global.css";
+
+  /* Colocar linea color roja del link activo por debajo del link, pero en desktop colocar la linea encima del link */
+  #navigator-menu a:is(.active) {
+    font-weight: 600;
+  }
+
+  .header-logo {
+    @apply h-8 md:h-12 w-auto;
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const barsIcon = document.querySelector("#menu-icon");
+    const closeIcon = document.querySelector("#close-icon");
+    const navigatorMenu = document.querySelector("#navigator-menu");
+    const header = document.querySelector<HTMLElement>("#header");
+
+    if (!navigatorMenu || !barsIcon || !closeIcon || !header) {
+      throw new Error("Element not found");
+    }
+
+    const setMenuOpen = (open: boolean | undefined) => {
+      // Toggle iconos
+      barsIcon.classList.toggle("hidden", open);
+      closeIcon.classList.toggle("hidden", !open);
+
+      // Mover el nav (tu clase para desplegar)
+      navigatorMenu.classList.toggle("top-16", open);
+
+      // Marcar estado en header
+      header.setAttribute("data-menu-open", open ? "true" : "false");
+    };
+
+    barsIcon.addEventListener("click", () => setMenuOpen(true));
+    closeIcon.addEventListener("click", () => setMenuOpen(false));
+  });
+</script>
