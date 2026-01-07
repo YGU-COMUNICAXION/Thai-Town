@@ -9,7 +9,8 @@ export interface Props {
 }
 
 const { variant = "default", linkColorClass } = Astro.props;
-const linkColor = linkColorClass ?? (variant === "hero" ? "text-white" : "text-primary-3");
+const linkColor =
+  linkColorClass ?? (variant === "hero" ? "text-white" : "text-primary-3");
 ---
 
 <header
@@ -19,7 +20,7 @@ const linkColor = linkColorClass ?? (variant === "hero" ? "text-white" : "text-p
   class:list={[
     "group/header flex items-center justify-center",
     "z-20 fixed w-full left-0 right-0 transition-colors duration-300",
-    variant === "hero" ? "bg-transparent" : "bg-red-100/50",
+    variant === "hero" ? "bg-transparent" : "bg-white",
   ]}
 >
   <div
@@ -79,10 +80,11 @@ const linkColor = linkColorClass ?? (variant === "hero" ? "text-white" : "text-p
     <nav
       id="navigator-menu"
       class:list={[
-        "bg-white fixed -top-full left-0 right-0 lg:top-0 lg:left-auto lg:right-auto",
+        " fixed -top-full left-0 right-0 lg:top-0 lg:left-auto lg:right-auto",
         "flex flex-col items-center justify-center shadow lg:shadow-none p-6 py-8 lg:p-0 lg:py-0",
         "transition-[top] duration-300 ease-in-out lg:transition-none",
         "lg:static lg:flex-1 lg:flex lg:items-center lg:gap-4 lg:pt-1 lg:bg-transparent",
+        variant === "hero" ? "bg-primary-1" : "bg-white",
       ]}
     >
       <ul
@@ -153,6 +155,21 @@ const linkColor = linkColorClass ?? (variant === "hero" ? "text-white" : "text-p
 
       // Marcar estado en header
       header.setAttribute("data-menu-open", open ? "true" : "false");
+
+      // Bloquear scroll del body
+      document.body.style.overflow = open ? "hidden" : "auto";
+
+      // Si el menú se abre, forzar el fondo del header solo si es modo hero
+      if (header.getAttribute("data-variant") === "hero") {
+        if (open) {
+          header.classList.add("!bg-primary-1");
+        } else {
+          // Solo quitar el fondo si no se ha scrolleado
+          if (window.scrollY <= 20) {
+            header.classList.remove("!bg-primary-1");
+          }
+        }
+      }
     };
 
     barsIcon.addEventListener("click", () => setMenuOpen(true));
@@ -167,5 +184,17 @@ const linkColor = linkColorClass ?? (variant === "hero" ? "text-white" : "text-p
       }
     });
 
+    // Al hacer scroll, cambiar el fondo del header solo en variante hero
+    window.addEventListener("scroll", () => {
+      if (header.getAttribute("data-variant") === "hero") {
+        if (window.scrollY > 20) {
+          header.setAttribute("data-scrolled", "true");
+          header.classList.add("!bg-primary-1");
+        } else {
+          header.setAttribute("data-scrolled", "false");
+          header.classList.remove("!bg-primary-1");
+        }
+      }
+    });
   });
 </script>

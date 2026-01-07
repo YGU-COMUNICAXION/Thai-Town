@@ -16,22 +16,27 @@ const {
   image,
   imageAlt,
   reverse = false,
-  imageClass = "w-full h-64 md:h-72 object-cover rounded-3xl shadow-lg",
+  imageClass = "w-full h-64 md:h-72 lg:h-96 object-cover",
 } = Astro.props;
 ---
 
 <div
   class:list={[
-    "flex flex-col md:flex-row items-center gap-8",
+    "container flex flex-col md:flex-row items-center gap-8",
     reverse ? "md:flex-row-reverse" : "",
   ]}
 >
-  <div class="md:w-1/2 space-y-4 text-primary-1">
+  <div
+    class="md:w-1/2 space-y-4 text-primary-1"
+    class:list={["lg:pl-8", reverse && "lg:pr-8"]}
+  >
     <h2 class="text-2xl md:text-3xl font-normal">{title}</h2>
     <div class="space-y-4">
-      {description.map((paragraph) => (
-        <p class="text-base md:text-lg text-primary-3">{paragraph}</p>
-      ))}
+      {
+        description.map((paragraph) => (
+          <p class="text-base md:text-lg text-primary-3">{paragraph}</p>
+        ))
+      }
     </div>
   </div>
   <div class="md:w-1/2 w-full">

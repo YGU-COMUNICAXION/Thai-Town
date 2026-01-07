@@ -20,28 +20,33 @@ const { title, subtitle, description, textureSrc, dishes } = Astro.props;
 <section class="relative bg-primary-1 text-white">
   <div class="absolute inset-0 opacity-20 bg-black"></div>
   <div
-    class="absolute inset-0 opacity-25"
-    style={`background-image: url(${textureSrc}); background-size: 240px;`}
-  ></div>
-  <div
-    class="relative container mx-auto px-4 pt-24 pb-28 md:pt-32 md:pb-36 text-center"
+    class="absolute inset-0 opacity-50"
+    style={`background-image: url(${textureSrc}); background-size: cover; background-repeat: no-repeat; background-position: center;`}
   >
-    <h1 class="mt-4 text-3xl md:text-5xl font-semibold">{title}</h1>
-    <h2 class="mt-4 text-lg md:text-2xl font-medium">{subtitle}</h2>
+  </div>
+  <div
+    class="relative container mx-auto px-4 pt-24 pb-28 md:pt-56 md:pb-56 text-center"
+  >
+    <h1 class="mt-4 text-3xl md:text-5xl font-semibold max-w-4xl mx-auto mb-4 lg:mb-12">
+      {title}
+    </h1>
+    <h2 class="mt-4 text-lg md:text-2xl lg:text-4xl font-normal">{subtitle}</h2>
     <p class="mt-4 max-w-3xl mx-auto text-base md:text-lg text-white/90">
       {description}
     </p>
   </div>
   <div class="absolute inset-x-0 -bottom-12 md:-bottom-16">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-3 gap-4 md:gap-8 justify-items-center">
-        {dishes.map((dish) => (
-          <Image
-            src={dish.src}
-            alt={dish.alt}
-            class="w-28 md:w-36 lg:w-44 aspect-square object-contain"
-          />
-        ))}
+    <div class="container max-w-5xl mx-auto px-4">
+      <div class="grid grid-cols-3 gap-4 md:gap-0 justify-items-center">
+        {
+          dishes.map((dish) => (
+            <Image
+              src={dish.src}
+              alt={dish.alt}
+              class="w-28 md:w-36 lg:w-64 aspect-square object-contain"
+            />
+          ))
+        }
       </div>
     </div>
   </div>
