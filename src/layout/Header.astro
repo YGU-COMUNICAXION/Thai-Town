@@ -5,9 +5,11 @@ import imgLogo from "@assets/logo.svg";
 
 export interface Props {
   variant?: "default" | "hero";
+  linkColorClass?: string;
 }
 
-const { variant = "default" } = Astro.props;
+const { variant = "default", linkColorClass } = Astro.props;
+const linkColor = linkColorClass ?? (variant === "hero" ? "text-white" : "text-primary-3");
 ---
 
 <header
@@ -94,7 +96,7 @@ const { variant = "default" } = Astro.props;
           [&>li>a]:ease-in-out
           font-normal text-base lg:text-lg xl:text-2xl transition-colors duration-300
         `,
-          variant === "hero" ? "text-white" : "text-primary-3",
+          linkColor,
         ]}
       >
         <li>

@@ -9,6 +9,8 @@ export interface Props {
   description?: string;
   ogImage?: string;
   headerVariant?: "default" | "hero";
+  headerLinkClass?: string;
+  overlapHeader?: boolean;
   mainClass?: string;
 }
 const {
@@ -16,6 +18,8 @@ const {
   description = "",
   ogImage,
   headerVariant = "default",
+  headerLinkClass,
+  overlapHeader = false,
   mainClass = "",
 } = Astro.props;
 ---
@@ -37,8 +41,14 @@ const {
     <ClientRouter />
   </head>
   <body class="flex flex-col min-h-screen">
-    <Header variant={headerVariant} />
-    <main class:list={["flex-1 pt-16 lg:pt-24 bg-white", mainClass]}>
+    <Header variant={headerVariant} linkColorClass={headerLinkClass} />
+    <main
+      class:list={[
+        "flex-1 bg-white",
+        overlapHeader ? "pt-0" : "pt-16 lg:pt-24",
+        mainClass,
+      ]}
+    >
       <slot />
     </main>
     <Footer />
