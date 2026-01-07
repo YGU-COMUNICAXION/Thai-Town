@@ -1,23 +1,25 @@
 ---
 import { Image } from "astro:assets";
-import texture from "@assets/svgs/textura.svg";
+import texture from "@assets/svgs/textura_flip.svg";
 import logoUberEats from "@assets/svgs/logoUbberEats.svg";
 import logoRappi from "@assets/svgs/logoRappi.svg";
 import logoDidiFood from "@assets/svgs/logoDidiFood.svg";
 ---
 
 <footer
-  class="footer-texture bg-primary-2 text-secondary-1"
-  style={`--footer-texture: url(${texture});`}
+  class="footer-texture bg-primary-2 text-secondary-1 bg-bottom lg:bg-position-[0px_20px] bg-no-repeat"
+  style={`background-image: url(${texture.src});`}
 >
-  <div class="relative mx-auto flex max-w-6xl flex-col items-center gap-10 px-6 py-12 text-center">
+  <div
+    class="relative mx-auto flex max-w-6xl flex-col items-center gap-10 px-6 py-12 text-center"
+  >
     <p class="max-w-3xl text-base font-medium leading-relaxed sm:text-lg">
-      Si quieres disfrutar de nuestros platillos, pero no puedes visitarnos, también puedes
-      encontrarnos en plataformas de delivery.
+      Si quieres disfrutar de nuestros platillos, pero no puedes visitarnos,
+      también puedes encontrarnos en plataformas de delivery.
     </p>
     <div class="grid w-full gap-8 sm:grid-cols-3">
       <div class="flex flex-col items-center gap-3">
-        <Image src={logoUberEats} alt="Uber Eats" class="h-8 w-auto sm:h-10" />
+        <Image src={logoUberEats} alt="Uber Eats" class="h-8 w-auto sm:h-7" />
         <p class="text-sm sm:text-base">Encuéntranos como Thai Path</p>
       </div>
       <div class="flex flex-col items-center gap-3">
@@ -25,34 +27,10 @@ import logoDidiFood from "@assets/svgs/logoDidiFood.svg";
         <p class="text-sm sm:text-base">Encuéntranos como Thai Path</p>
       </div>
       <div class="flex flex-col items-center gap-3">
-        <Image src={logoDidiFood} alt="DiDi Food" class="h-8 w-auto sm:h-10" />
+        <Image src={logoDidiFood} alt="DiDi Food" class="h-8 w-auto sm:h-7" />
         <p class="text-sm sm:text-base">Encuéntranos como Thai Path</p>
       </div>
     </div>
   </div>
 </footer>
 
-<style>
-  .footer-texture {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .footer-texture::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: var(--footer-texture);
-    background-size: cover;
-    background-position: center;
-    transform: scaleY(-1);
-    transform-origin: center;
-    opacity: 0.3;
-    z-index: 0;
-  }
-
-  .footer-texture > div {
-    position: relative;
-    z-index: 1;
-  }
-</style>
