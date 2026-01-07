@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+import texture from "@assets/svgs/textura.svg";
+import logoUberEats from "@assets/svgs/logoUbberEats.svg";
+import logoRappi from "@assets/svgs/logoRappi.svg";
+import logoDidiFood from "@assets/svgs/logoDidiFood.svg";
+---
+
+<footer
+  class="footer-texture bg-primary-2 text-secondary-1"
+  style={`--footer-texture: url(${texture});`}
+>
+  <div class="relative mx-auto flex max-w-6xl flex-col items-center gap-8 px-6 py-12 text-center">
+    <p class="text-base font-medium leading-relaxed sm:text-lg">
+      Si no puedes visitarnos en nuestra casa, ¡vamos a la tuya!
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-10">
+      <Image src={logoUberEats} alt="Uber Eats" class="h-8 w-auto sm:h-10" />
+      <Image src={logoRappi} alt="Rappi" class="h-8 w-auto sm:h-10" />
+      <Image src={logoDidiFood} alt="DiDi Food" class="h-8 w-auto sm:h-10" />
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-texture {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-texture::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--footer-texture);
+    background-size: cover;
+    background-position: center;
+    transform: scaleY(-1);
+    transform-origin: center;
+    z-index: 0;
+  }
+
+  .footer-texture > div {
+    position: relative;
+    z-index: 1;
+  }
+</style>
