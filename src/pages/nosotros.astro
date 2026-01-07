@@ -1,0 +1,67 @@
+---
+import Layout from "src/layout/Layout.astro";
+import Hero from "@components/nosotros/Hero.astro";
+import InfoSection from "@components/nosotros/InfoSection.astro";
+
+import imgPlato1 from "@assets/imgs/home/plato1.png";
+import imgPlato2 from "@assets/imgs/home/plato2.png";
+import imgPlato3 from "@assets/imgs/home/plato3.png";
+import textura from "@assets/svgs/textura.svg";
+
+import imgHospitalidad from "@assets/imgs/nosotros/hospitalidad.jpg";
+import imgDedicacion from "@assets/imgs/nosotros/dedicacion.jpg";
+import imgFundador from "@assets/imgs/nosotros/fundador.jpg";
+---
+
+<Layout
+  title="Thai Town - Nosotros"
+  description="Conoce nuestra historia y pasión por la cocina tailandesa."
+  headerVariant="hero"
+  headerLinkClass="text-white"
+  overlapHeader={true}
+>
+  <Hero
+    title="La filosofía que nos inspira a cocinar para ti"
+    subtitle="Pasión por la gastronomía"
+    description="En cada uno de nuestros platillos, ingredientes y recetas, transmitimos nuestro amor por el buen comer y la gastronomía tailandesa; así garantizamos que tu primera visita no sea la única."
+    textureSrc={textura.src}
+    dishes={[
+      { src: imgPlato1, alt: "Platillo tailandés" },
+      { src: imgPlato2, alt: "Especialidad de la casa" },
+      { src: imgPlato3, alt: "Receta tradicional" },
+    ]}
+  />
+
+  <section class="container mx-auto px-4 pt-20 md:pt-24 pb-16 space-y-14">
+    <InfoSection
+      title="Hospitalidad"
+      description={[
+        "Sabemos que comer es un placer que se comparte. Por ello, proveemos un servicio amable, cálido y personal que te hará sentir como si estuvieras comiendo en casa de tus amigos en Tailandia.",
+      ]}
+      image={imgHospitalidad}
+      imageAlt="Equipo recibiendo a los clientes"
+    />
+
+    <InfoSection
+      title="Dedicación en cada acción"
+      description={[
+        "Todo lo que hacemos tiene la intención de honrar las recetas tradicionales tailandesas, el paladar de nuestros clientes y nuestras propias expectativas culinarias.",
+      ]}
+      image={imgDedicacion}
+      imageAlt="Preparación cuidadosa de los platillos"
+      reverse={true}
+    />
+
+    <InfoSection
+      title="Nuestro fundador"
+      description={[
+        "Al parecer el nombre “Jerónimo” indica valentía. La historia dice que cuando una persona va a lanzarse de un paracaídas o hacer algo arriesgado, grita “Jerónimoooooo” y el hombre que ves en la foto es chef, fundador de Thai Town y justo se llama así.",
+        "La historia de Thai Town inicia con un salto de fe en el 2016. Un día empezó a investigar la receta tailandesa del Pad Thai y comenzó a elaborar muchas variantes. Después de 19 intentos, ¡llegó a la receta que nuestros comensales tanto aman!",
+        "Ese fue el momento que lo acercó a hacer de la gastronomía su nueva forma de vida. El resto es historia contada a través de nuestros platillos",
+      ]}
+      image={imgFundador}
+      imageAlt="Fundador de Thai Town"
+      imageClass="w-full h-80 md:h-[28rem] lg:h-[40rem] object-cover"
+    />
+  </section>
+</Layout>

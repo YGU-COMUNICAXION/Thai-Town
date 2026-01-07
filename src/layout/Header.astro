@@ -2,15 +2,25 @@
 import { Image } from "astro:assets";
 
 import imgLogo from "@assets/logo.svg";
+
+export interface Props {
+  variant?: "default" | "hero";
+  linkColorClass?: string;
+}
+
+const { variant = "default", linkColorClass } = Astro.props;
+const linkColor =
+  linkColorClass ?? (variant === "hero" ? "text-white" : "text-primary-3");
 ---
 
 <header
   id="header"
   data-scrolled="false"
+  data-variant={variant}
   class:list={[
     "group/header flex items-center justify-center",
-    "z-40 fixed w-full left-0 right-0 transition-colors duration-300",
-    "bg-red-100/50",
+    "z-20 fixed w-full left-0 right-0 transition-colors duration-300",
+    variant === "hero" ? "bg-transparent" : "bg-white",
   ]}
 >
   <div
@@ -24,7 +34,10 @@ import imgLogo from "@assets/logo.svg";
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class={`size-8 lg:hidden transition-colors duration-300`}
+        class:list={[
+          "size-8 lg:hidden transition-colors duration-300",
+          variant === "hero" ? "text-white" : "text-primary-3",
+        ]}
       >
         <path
           stroke-linecap="round"
@@ -39,7 +52,10 @@ import imgLogo from "@assets/logo.svg";
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class={`hidden size-8 lg:hidden transition-colors duration-300`}
+        class:list={[
+          "hidden size-8 lg:hidden transition-colors duration-300",
+          variant === "hero" ? "text-white" : "text-primary-3",
+        ]}
       >
         <path
           stroke-linecap="round"
@@ -64,22 +80,26 @@ import imgLogo from "@assets/logo.svg";
     <nav
       id="navigator-menu"
       class:list={[
-        "bg-white fixed -top-full left-0 right-0 lg:top-0 lg:left-auto lg:right-auto",
+        " fixed -top-full left-0 right-0 lg:top-0 lg:left-auto lg:right-auto",
         "flex flex-col items-center justify-center shadow lg:shadow-none p-6 py-8 lg:p-0 lg:py-0",
         "transition-[top] duration-300 ease-in-out lg:transition-none",
         "lg:static lg:flex-1 lg:flex lg:items-center lg:gap-4 lg:pt-1 lg:bg-transparent",
+        variant === "hero" ? "bg-primary-1" : "bg-white",
       ]}
     >
       <ul
         data-header-nav
-        class={`h-full container
-        flex flex-col lg:flex-row items-center justify-end gap-8 lg:gap-8
-        lg:[&>li]:text-center
-        [&>li>a]:relative [&>li]:inline-block
-        [&>li>a]:hover:underline [&>li>a]:transition-colors [&>li>a]:duration-300
-        [&>li>a]:ease-in-out
-        font-normal text-primary-3 text-base lg:text-lg xl:text-2xl transition-colors duration-300
-      `}
+        class:list={[
+          `h-full container
+          flex flex-col lg:flex-row items-center justify-end gap-8 lg:gap-8
+          lg:[&>li]:text-center
+          [&>li>a]:relative [&>li]:inline-block
+          [&>li>a]:hover:underline [&>li>a]:transition-colors [&>li>a]:duration-300
+          [&>li>a]:ease-in-out
+          font-normal text-base lg:text-lg xl:text-2xl transition-colors duration-300
+        `,
+          linkColor,
+        ]}
       >
         <li>
           <a href={"/"}> Inicio </a>
@@ -103,6 +123,10 @@ import imgLogo from "@assets/logo.svg";
 
   #navigator-menu a:is(.active) {
     font-weight: 700;
+  }
+
+  header[data-variant="hero"] #navigator-menu a {
+    color: inherit;
   }
 
   .header-logo {
@@ -131,6 +155,21 @@ import imgLogo from "@assets/logo.svg";
 
       // Marcar estado en header
       header.setAttribute("data-menu-open", open ? "true" : "false");
+
+      // Bloquear scroll del body
+      document.body.style.overflow = open ? "hidden" : "auto";
+
+      // Si el menú se abre, forzar el fondo del header solo si es modo hero
+      if (header.getAttribute("data-variant") === "hero") {
+        if (open) {
+          header.classList.add("!bg-primary-1");
+        } else {
+          // Solo quitar el fondo si no se ha scrolleado
+          if (window.scrollY <= 20) {
+            header.classList.remove("!bg-primary-1");
+          }
+        }
+      }
     };
 
     barsIcon.addEventListener("click", () => setMenuOpen(true));
@@ -145,5 +184,17 @@ import imgLogo from "@assets/logo.svg";
       }
     });
 
+    // Al hacer scroll, cambiar el fondo del header solo en variante hero
+    window.addEventListener("scroll", () => {
+      if (header.getAttribute("data-variant") === "hero") {
+        if (window.scrollY > 20) {
+          header.setAttribute("data-scrolled", "true");
+          header.classList.add("!bg-primary-1");
+        } else {
+          header.setAttribute("data-scrolled", "false");
+          header.classList.remove("!bg-primary-1");
+        }
+      }
+    });
   });
 </script>
