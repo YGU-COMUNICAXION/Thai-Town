@@ -5,11 +5,11 @@
 @theme {
   --font-sans: "Montserrat Alternates", sans-serif;
 
-  --primary-color-1: #5e3718;
-  --primary-color-2: #804626;
-  --primary-color-3: #a47d4e;
+  --color-primary-1: #5e3718;
+  --color-primary-2: #804626;
+  --color-primary-3: #a47d4e;
 
-  --secondary-color-1: #f4f2e5;
+  --color-secondary-1: #f4f2e5;
 
-  --accent-color-1: #e56e0c;
+  --color-accent-1: #e56e0c;
 }

@@ -10,14 +10,15 @@ import imgLogo from "@assets/logo.svg";
   class:list={[
     "group/header flex items-center justify-center",
     "z-20 fixed w-full left-0 right-0 transition-colors duration-300",
-    "bg-black/50",
+    "bg-transparent",
   ]}
 >
   <div
-    class="container relative flex items-center justify-between gap-4 px-4 md:py-0 lg:p-0 md:px-0"
+    class="container relative flex items-center justify-between gap-4 px-4 md:py-4 md:px-0"
   >
     <div class="lg:hidden absolute">
       <svg
+        id="menu-icon"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -32,6 +33,7 @@ import imgLogo from "@assets/logo.svg";
       </svg>
 
       <svg
+        id="close-icon"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -55,7 +57,7 @@ import imgLogo from "@assets/logo.svg";
         data-header-brand
         class={`flex items-center transition-colors duration-300`}
       >
-        <Image class="h-16 lg:h-24 w-auto" src={imgLogo} alt={"logo"} />
+        <Image class="h-16 lg:h-20 w-auto" src={imgLogo} alt={"logo"} />
       </a>
     </div>
 
@@ -71,28 +73,25 @@ import imgLogo from "@assets/logo.svg";
       <ul
         data-header-nav
         class={`h-full container
-        flex flex-col lg:flex-row items-center justify-end gap-8 lg:gap-14
+        flex flex-col lg:flex-row items-center justify-end gap-8 lg:gap-8
         lg:[&>li]:text-center
-        [&>li>a]:relative [&>li>a]:uppercase [&>li]:inline-block
+        [&>li>a]:relative [&>li]:inline-block
         [&>li>a]:hover:underline [&>li>a]:transition-colors [&>li>a]:duration-300
         [&>li>a]:ease-in-out
-        font-normal text-base lg:text-lg xl:text-xl transition-colors duration-300
+        font-normal text-primary-3 text-base lg:text-lg xl:text-2xl transition-colors duration-300
       `}
       >
         <li>
           <a href={"/"}> Inicio </a>
         </li>
         <li>
-          <a href={"/quienes-somos"}> Quienes somos </a>
-        </li>
-        <li>
-          <a href={"/proyectos"}> Proyectos </a>
-        </li>
-        <li>
-          <a href={"/inversionistas"}> Inversionistas </a>
+          <a href={"/nosotros"}> Nosotros </a>
         </li>
         <li>
           <a href={"/contacto"}> Contacto </a>
+        </li>
+        <li>
+          <a href={"/menu"}> Menu </a>
         </li>
       </ul>
     </nav>
@@ -104,7 +103,7 @@ import imgLogo from "@assets/logo.svg";
 
   /* Colocar linea color roja del link activo por debajo del link, pero en desktop colocar la linea encima del link */
   #navigator-menu a:is(.active) {
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .header-logo {
@@ -137,5 +136,15 @@ import imgLogo from "@assets/logo.svg";
 
     barsIcon.addEventListener("click", () => setMenuOpen(true));
     closeIcon.addEventListener("click", () => setMenuOpen(false));
+
+    // Active link
+    const currentPath = window.location.pathname;
+    const navLinks = navigatorMenu.querySelectorAll("a");
+    navLinks.forEach((link) => {
+      if (link.getAttribute("href") === currentPath) {
+        link.classList.add("active");
+      }
+    });
+
   });
 </script>
