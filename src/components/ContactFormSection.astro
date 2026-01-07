@@ -1,0 +1,33 @@
+---
+import ContactForm from "@components/ContactForm.astro";
+---
+
+<section class="contact-form-section py-16 text-white">
+  <div class="container mx-auto px-4">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl font-semibold md:text-4xl">
+        Tu experiencia en Thai Town
+      </h2>
+      <p class="mt-4 text-base text-white/90 md:text-lg">
+        Este es tu espacio para aclarar tus dudas o contarnos cómo la pasas.
+      </p>
+    </div>
+    <div class="mx-auto mt-10 max-w-3xl">
+      <ContactForm />
+    </div>
+  </div>
+</section>
+
+<style>
+  @reference "../styles/global.css";
+
+  .contact-form-section {
+    background: linear-gradient(
+      to bottom,
+      rgba(164, 125, 78, 0.9) 0%,
+      rgba(164, 125, 78, 0.9) 60%,
+      transparent 60%,
+      transparent 100%
+    );
+  }
+</style>

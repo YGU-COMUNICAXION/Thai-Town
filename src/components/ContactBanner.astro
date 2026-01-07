@@ -1,0 +1,41 @@
+---
+const mapEmbedUrl =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.169236612318!2d-99.1715569!3d19.3956581!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff0c9c8fd293%3A0xa64c7f92d3d8c1b1!2sC.%20Pensilvania%2080%2C%20N%C3%A1poles%2C%20Benito%20Ju%C3%A1rez%2C%2003810%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses-419!2smx!4v1740000000000!5m2!1ses-419!2smx";
+---
+
+<section class="container mx-auto px-4 pb-12 pt-10 lg:pt-16">
+  <div class="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+    <div class="space-y-6 text-center lg:text-left">
+      <h1 class="text-4xl font-semibold text-primary-2 md:text-5xl">
+        Contacto
+      </h1>
+      <p class="text-base text-primary-3 md:text-lg">
+        En Thai Town somos felices de verte y escucharte, así que llámanos si
+        tienes dudas o visítanos si estás listo para disfrutar de un Pad Thai y
+        saludar a Jerónimo.
+      </p>
+      <div class="space-y-4 text-primary-3">
+        <div class="flex items-start justify-center gap-3 text-base lg:justify-start">
+          <span aria-hidden="true">📞</span>
+          <span>55 7155 3403</span>
+        </div>
+        <div class="flex items-start justify-center gap-3 text-base lg:justify-start">
+          <span aria-hidden="true">📍</span>
+          <span>
+            C. Pensilvania 80, Nápoles, Benito Juárez, 03810, Ciudad de México,
+            CDMX
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="overflow-hidden rounded-3xl border border-primary-3/20 shadow-lg">
+      <iframe
+        title="Mapa de Thai Town"
+        src={mapEmbedUrl}
+        class="h-72 w-full md:h-96"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+</section>

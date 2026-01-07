@@ -1,0 +1,103 @@
+<form
+  id="contact-form"
+  class="space-y-4 rounded-3xl bg-white/95 p-6 text-primary-2 shadow-lg md:p-8"
+>
+  <label class="block">
+    <span class="sr-only">Nombre</span>
+    <input
+      type="text"
+      name="name"
+      autocomplete="name"
+      placeholder="Nombre"
+      class="w-full rounded-2xl border border-transparent bg-neutral-100 px-4 py-3 text-sm text-primary-2 placeholder:text-primary-2/70 focus:border-primary-2 focus:outline-none"
+      required
+    />
+  </label>
+
+  <label class="block">
+    <span class="sr-only">Email</span>
+    <input
+      type="email"
+      name="email"
+      autocomplete="email"
+      placeholder="Email"
+      class="w-full rounded-2xl border border-transparent bg-neutral-100 px-4 py-3 text-sm text-primary-2 placeholder:text-primary-2/70 focus:border-primary-2 focus:outline-none"
+      required
+    />
+  </label>
+
+  <label class="block">
+    <span class="sr-only">Cuéntanos</span>
+    <textarea
+      name="message"
+      rows="5"
+      placeholder="Cuéntanos"
+      class="w-full resize-none rounded-2xl border border-transparent bg-neutral-100 px-4 py-3 text-sm text-primary-2 placeholder:text-primary-2/70 focus:border-primary-2 focus:outline-none"
+      required
+    ></textarea>
+  </label>
+
+  <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+    <p class="text-sm text-primary-2">
+      Por favor, llena el formulario y pronto nos comunicaremos contigo.
+    </p>
+    <button
+      type="submit"
+      class="inline-flex items-center justify-center rounded-full bg-primary-3 px-8 py-3 text-sm font-semibold text-white transition hover:bg-primary-2"
+    >
+      Enviar
+    </button>
+  </div>
+
+  <p
+    id="contact-form-status"
+    class="text-sm font-medium text-primary-2"
+    role="status"
+    aria-live="polite"
+  ></p>
+</form>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const form = document.querySelector<HTMLFormElement>("#contact-form");
+    const status = document.querySelector<HTMLParagraphElement>(
+      "#contact-form-status",
+    );
+
+    if (!form || !status) return;
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const payload = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        message: formData.get("message"),
+      };
+
+      status.textContent = "Enviando mensaje...";
+
+      try {
+        const response = await fetch("/api/contacto", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          throw new Error("No se pudo enviar el mensaje");
+        }
+
+        const data = await response.json();
+        status.textContent = data.message ?? "Mensaje enviado correctamente.";
+        form.reset();
+      } catch (error) {
+        status.textContent =
+          "No pudimos enviar tu mensaje. Inténtalo más tarde.";
+      }
+    });
+  });
+</script>
