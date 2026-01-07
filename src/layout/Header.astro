@@ -10,11 +10,11 @@ import imgLogo from "@assets/logo.svg";
   class:list={[
     "group/header flex items-center justify-center",
     "z-20 fixed w-full left-0 right-0 transition-colors duration-300",
-    "bg-transparent",
+    "bg-red-100/50",
   ]}
 >
   <div
-    class="container relative flex items-center justify-between gap-4 px-4 md:py-4 md:px-0"
+    class="container relative flex items-center justify-between gap-4 px-4 md:py-2 md:px-0"
   >
     <div class="lg:hidden absolute">
       <svg
@@ -101,7 +101,6 @@ import imgLogo from "@assets/logo.svg";
 <style>
   @reference "../styles/global.css";
 
-  /* Colocar linea color roja del link activo por debajo del link, pero en desktop colocar la linea encima del link */
   #navigator-menu a:is(.active) {
     font-weight: 700;
   }
