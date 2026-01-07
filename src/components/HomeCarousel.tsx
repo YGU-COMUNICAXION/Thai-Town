@@ -51,11 +51,11 @@ export default function HomeCarousel() {
         <img
           src={activeSlide.image.src}
           alt={activeSlide.title}
-          className="size-80 md:size-[24rem] lg:size-[28rem] rounded-full object-cover shadow-xl z-10"
+          className="size-80 md:size-96 lg:size-112 rounded-full object-cover shadow-xl z-10"
         />
 
         <svg
-          className="absolute inset-0 h-full w-full rotate-[0deg] z-20 top-12 left-12 lg:top-14 lg:left-14"
+          className="absolute inset-0 h-full w-full rotate-0 z-20 top-12 left-12 lg:top-14 lg:left-14"
           viewBox="0 0 400 400"
           aria-hidden="true"
         >
