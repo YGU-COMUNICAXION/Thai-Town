@@ -1,0 +1,37 @@
+---
+import Layout from "src/layout/Layout.astro";
+---
+
+<Layout
+  title="Thai Town - Menú"
+  description="Consulta nuestro menú completo en PDF."
+  mainClass="bg-secondary-1"
+>
+  <section class="container mx-auto px-4 pt-24 pb-16">
+    <div class="mx-auto flex w-full max-w-5xl flex-col gap-6">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <h1 class="text-4xl font-semibold text-primary-3 md:text-5xl">
+          Menú
+        </h1>
+        <p class="max-w-2xl text-base text-primary-2 md:text-lg">
+          Consulta el menú completo y descárgalo para verlo cuando quieras.
+        </p>
+        <a
+          href="/menu.pdf"
+          download
+          class="inline-flex items-center justify-center rounded-full bg-primary-2 px-6 py-2 text-sm font-semibold text-white transition hover:bg-primary-1 md:text-base"
+        >
+          Descargar menú
+        </a>
+      </div>
+
+      <div class="overflow-hidden rounded-3xl bg-white shadow-xl">
+        <iframe
+          title="Menú Thai Town"
+          src="/menu.pdf#view=FitH"
+          class="h-[70vh] w-full md:h-[80vh] lg:h-[90vh]"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</Layout>
