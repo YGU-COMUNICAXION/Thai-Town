@@ -2,15 +2,22 @@
 import { Image } from "astro:assets";
 
 import imgLogo from "@assets/logo.svg";
+
+export interface Props {
+  variant?: "default" | "hero";
+}
+
+const { variant = "default" } = Astro.props;
 ---
 
 <header
   id="header"
   data-scrolled="false"
+  data-variant={variant}
   class:list={[
     "group/header flex items-center justify-center",
     "z-20 fixed w-full left-0 right-0 transition-colors duration-300",
-    "bg-red-100/50",
+    variant === "hero" ? "bg-transparent" : "bg-red-100/50",
   ]}
 >
   <div
@@ -24,7 +31,10 @@ import imgLogo from "@assets/logo.svg";
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class={`size-8 lg:hidden transition-colors duration-300`}
+        class:list={[
+          "size-8 lg:hidden transition-colors duration-300",
+          variant === "hero" ? "text-white" : "text-primary-3",
+        ]}
       >
         <path
           stroke-linecap="round"
@@ -39,7 +49,10 @@ import imgLogo from "@assets/logo.svg";
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class={`hidden size-8 lg:hidden transition-colors duration-300`}
+        class:list={[
+          "hidden size-8 lg:hidden transition-colors duration-300",
+          variant === "hero" ? "text-white" : "text-primary-3",
+        ]}
       >
         <path
           stroke-linecap="round"
@@ -72,14 +85,17 @@ import imgLogo from "@assets/logo.svg";
     >
       <ul
         data-header-nav
-        class={`h-full container
-        flex flex-col lg:flex-row items-center justify-end gap-8 lg:gap-8
-        lg:[&>li]:text-center
-        [&>li>a]:relative [&>li]:inline-block
-        [&>li>a]:hover:underline [&>li>a]:transition-colors [&>li>a]:duration-300
-        [&>li>a]:ease-in-out
-        font-normal text-primary-3 text-base lg:text-lg xl:text-2xl transition-colors duration-300
-      `}
+        class:list={[
+          `h-full container
+          flex flex-col lg:flex-row items-center justify-end gap-8 lg:gap-8
+          lg:[&>li]:text-center
+          [&>li>a]:relative [&>li]:inline-block
+          [&>li>a]:hover:underline [&>li>a]:transition-colors [&>li>a]:duration-300
+          [&>li>a]:ease-in-out
+          font-normal text-base lg:text-lg xl:text-2xl transition-colors duration-300
+        `,
+          variant === "hero" ? "text-white" : "text-primary-3",
+        ]}
       >
         <li>
           <a href={"/"}> Inicio </a>
@@ -103,6 +119,10 @@ import imgLogo from "@assets/logo.svg";
 
   #navigator-menu a:is(.active) {
     font-weight: 700;
+  }
+
+  header[data-variant="hero"] #navigator-menu a {
+    color: inherit;
   }
 
   .header-logo {

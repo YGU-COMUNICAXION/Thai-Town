@@ -8,8 +8,16 @@ export interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  headerVariant?: "default" | "hero";
+  mainClass?: string;
 }
-const { title = "", description = "", ogImage } = Astro.props;
+const {
+  title = "",
+  description = "",
+  ogImage,
+  headerVariant = "default",
+  mainClass = "",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -29,8 +37,8 @@ const { title = "", description = "", ogImage } = Astro.props;
     <ClientRouter />
   </head>
   <body class="flex flex-col min-h-screen">
-    <Header />
-    <main class="flex-1 pt-16 lg:pt-24 bg-white">
+    <Header variant={headerVariant} />
+    <main class:list={["flex-1 pt-16 lg:pt-24 bg-white", mainClass]}>
       <slot />
     </main>
     <Footer />
