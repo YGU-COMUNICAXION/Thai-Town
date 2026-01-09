@@ -1,0 +1,19 @@
+---
+import { Image } from "astro:assets";
+import iconoOrdenar from "@assets/svgs/iconoOrdenar.svg";
+---
+
+<a
+  href="https://menu.plick.app/thaitown"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Abrir menú para ordenar"
+  class="fixed bottom-6 right-6 z-50 inline-flex items-center gap-0 rounded-full bg-accent-1 px-4 py-2 text-white shadow-lg transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-1"
+>
+  <span class="pl-2 pr-3 text-sm font-semibold uppercase tracking-wide sm:text-base">
+    Quiero ordenar
+  </span>
+  <span class="flex h-12 w-12 items-center justify-center rounded-full bg-transparent">
+    <Image src={iconoOrdenar} alt="Ordenar" class="h-12 w-12" />
+  </span>
+</a>
